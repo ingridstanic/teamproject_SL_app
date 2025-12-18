@@ -1,3 +1,4 @@
+import { createHtml } from "./html";
 import "./style.css";
 
 const success = (pos: GeolocationPosition) => {
@@ -9,3 +10,18 @@ const error = (error: GeolocationPositionError) => {
 };
 
 navigator.geolocation.getCurrentPosition(success, error);
+
+document.getElementById("journeySearch")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const destinationInput = document.getElementById("destinationInput");
+  if (!destinationInput) return;
+
+  // const destination = (destinationInput as HTMLInputElement).value;
+
+  // const data = await getJourney(destination);
+
+  // createHtml(data.journey);
+
+  //har kommenterat ut detta, behöver justeras när fetch finns
+});
