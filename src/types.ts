@@ -1,31 +1,20 @@
-export type Coord = {
-  lat: number;
-  lon: number;
-};
-
-export type Origin = {
-  id: string;
-  name: string;
-  coord: Coord;
-};
-
-export type Destination = {
-  id: string;
+export type Location = {
+  id?: string; // valfritt
   name: string;
 };
 
 export type Leg = {
-  origin: Origin;
-  destination: Destination;
+  origin: Location;
+  destination: Location;
   departureTime?: string;
   arrivalTime?: string;
 };
 
 export type Journey = {
-  id: string;
-  tripDuration: number;
-  tripRtDuration: number;
-  legs: Leg[];
+  id?: string; // valfritt
+  tripDuration: string;
+  tripRtDuration: string;
+  legs: Leg[]; // fortsättning vet inte????
 };
 
 export type TripResponse = {
