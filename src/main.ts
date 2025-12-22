@@ -25,3 +25,15 @@ document.getElementById("journeySearch")?.addEventListener("submit", (e) => {
 
   //har kommenterat ut detta, behöver justeras när fetch finns
 });
+
+const initMap = async () => {
+  const { Map } = (await google.maps.importLibrary(
+    "maps"
+  )) as google.maps.MapsLibrary;
+  new Map(document.getElementById("map") as HTMLElement, {
+    center: { lat: 59.33101, lng: 17.98392 },
+    zoom: 12,
+    mapId: "journeymap",
+  });
+};
+initMap();
