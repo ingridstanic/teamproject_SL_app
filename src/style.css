@@ -114,3 +114,7 @@ input {
     background-color: #f9f9f9;
   }
 }
+#map {
+  width: 800px;
+  height: 800px;
+}
