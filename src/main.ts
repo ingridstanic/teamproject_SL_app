@@ -29,8 +29,6 @@ document
     const data = await getStopInfoFromUser(destination);
 
     createHtmlSugs(data, coordsLat, coordsLong);
-
-    //har kommenterat ut detta, behöver justeras när fetch finns
   });
 
 const initMap = async () => {
