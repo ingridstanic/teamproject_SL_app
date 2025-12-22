@@ -6,7 +6,7 @@ export const getJourney = async (originID: string, destinationID: string) => {
       originID +
       "&name_destination=" +
       destinationID +
-      "&calc_number_of_trips=3"
+      "&calc_number_of_trips=1"
   );
 
   const data: Trip = await response.json();
