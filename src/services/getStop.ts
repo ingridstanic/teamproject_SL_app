@@ -1,4 +1,4 @@
-import type { Trip } from "../models/Trip";
+import type { StopFind } from "../models/StopFind";
 
 export const getStopInfoFromUser = async (search: string) => {
   const response = await fetch(
@@ -7,7 +7,7 @@ export const getStopInfoFromUser = async (search: string) => {
       "&any_obj_filter_sf=2&type_sf=any"
   );
 
-  const data: Trip = await response.json();
+  const data: StopFind = await response.json();
 
   return data;
 };

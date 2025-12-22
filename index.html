@@ -8,7 +8,8 @@
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA32gXl4nW8AsY6z8ayNZNVE09epld5RPE"
       async
-      defer></script>
+      defer
+    ></script>
   </head>
   <body>
     <div id="app">
@@ -19,10 +20,12 @@
             type="text"
             id="destinationInput"
             required
-            placeholder="Alvik" />
+            placeholder="Alvik"
+          />
         </div>
         <button>Sök</button>
       </form>
+      <ul id="sugsContainer"></ul>
       <div id="journeyContainer"></div>
     </div>
 

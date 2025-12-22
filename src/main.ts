@@ -1,7 +1,6 @@
-import { createHtml } from "./html";
-import { getJourney } from "./services/getJourney";
 import { getStopInfoFromUser } from "./services/getStop";
 import "./style.css";
+import { createHtmlSugs } from "./Utils/html";
 
 let coordsLong = 0;
 let coordsLat = 0;
@@ -9,12 +8,6 @@ let coordsLat = 0;
 const success = async (pos: GeolocationPosition) => {
   coordsLong = pos.coords.longitude;
   coordsLat = pos.coords.latitude;
-
-  const data = await getStopInfoFromGeoLocation(
-    `${coordsLong.toFixed(5)}:${coordsLat.toFixed(5)}:WGS84[dd.ddddd]`
-  );
-
-  console.log(data);
 };
 
 const error = (error: GeolocationPositionError) => {
@@ -33,12 +26,9 @@ document
 
     const destination = (destInput as HTMLInputElement).value;
 
-    await getStopInfoFromUser(destination);
+    const data = await getStopInfoFromUser(destination);
 
-    await getJourney(
-      `${coordsLong.toFixed(5)}:${coordsLat.toFixed(5)}:WGS84[dd.ddddd]`,
-      "9091001000009112"
-    );
+    createHtmlSugs(data, coordsLat, coordsLong);
 
     //har kommenterat ut detta, behöver justeras när fetch finns
   });
