@@ -1,8 +1,20 @@
 import { createHtml } from "./html";
+import { getJourney } from "./services/getJourney";
+import { getStopInfoFromUser } from "./services/getStop";
 import "./style.css";
 
-const success = (pos: GeolocationPosition) => {
-  console.log(pos.coords);
+let coordsLong = 0;
+let coordsLat = 0;
+
+const success = async (pos: GeolocationPosition) => {
+  coordsLong = pos.coords.longitude;
+  coordsLat = pos.coords.latitude;
+
+  const data = await getStopInfoFromGeoLocation(
+    `${coordsLong.toFixed(5)}:${coordsLat.toFixed(5)}:WGS84[dd.ddddd]`
+  );
+
+  console.log(data);
 };
 
 const error = (error: GeolocationPositionError) => {
@@ -11,20 +23,25 @@ const error = (error: GeolocationPositionError) => {
 
 navigator.geolocation.getCurrentPosition(success, error);
 
-document.getElementById("journeySearch")?.addEventListener("submit", (e) => {
-  e.preventDefault();
+document
+  .getElementById("journeySearch")
+  ?.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const destinationInput = document.getElementById("destinationInput");
-  if (!destinationInput) return;
+    const destInput = document.getElementById("destinationInput");
+    if (!destInput) return;
 
-  // const destination = (destinationInput as HTMLInputElement).value;
+    const destination = (destInput as HTMLInputElement).value;
 
-  // const data = await getJourney(destination);
+    await getStopInfoFromUser(destination);
 
-  // createHtml(data.journey);
+    await getJourney(
+      `${coordsLong.toFixed(5)}:${coordsLat.toFixed(5)}:WGS84[dd.ddddd]`,
+      "9091001000009112"
+    );
 
-  //har kommenterat ut detta, behöver justeras när fetch finns
-});
+    //har kommenterat ut detta, behöver justeras när fetch finns
+  });
 
 const initMap = async () => {
   const { Map } = (await google.maps.importLibrary(
