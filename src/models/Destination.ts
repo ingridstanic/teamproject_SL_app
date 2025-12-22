@@ -2,4 +2,5 @@
 
 export type destionation = {
     name: string;
+    id: number;
 }
